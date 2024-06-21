@@ -5,63 +5,60 @@ import pandas as pd
 
 
 def main():
-    ## projects + contribtions
 
-   getData()
-    
-          
+    df = dataframeUpdate(getData())
     
     
+## prompt the user for necessary input data 
 def getData():   
-    df = pd.DataFrame('Project': [], 'Contributions': [])
+
+    ## establish df and create and update list for project names
+    df = pd.DataFrame(columns=['Project', 'Contributions'])
     projects = []
-    contributions = []
-    
+    i = 'y'
+
     while i != 'n':
         p = input('Enter project name (n to stop): ')
         i = p
-        projects.append(p)
+        if i != 'n':
+            projects.append(p)
     
-    print(projects)
-    
+    ## get the contributions for each project
     for x in range(len(projects)):
+        j = 'y'
         while j != 'n':
-            q = input('Enter contribution amount for {} (n to stop): '.format(projects[x]))
+            q = input('Enter contribution amounts for {} (n to stop): '.format(projects[x]))
             j = q
-            
-           ## contributions.append(q)
-            df.loc[len(df.index)] = projects[x], q
-            
-    print(df)
+            if j != 'n':
+                df.loc[len(df.index)] = projects[x], q
+           
+    return df
     
-            
-            
-        
-        
-        
-    
-
-
+## prompt user for the total matched amount
 def getMatched(): 
     matched_pool = input('Enter the total matched amount: ')
     print('Matched Amount: ', matched_pool)
     return matched_pool
     
     
+## calcuate the raw weighted value from the contributions
+def dataframeUpdate(df):
+    total_sum = 0
+    projects = df['Project']
+    contributions = df['Contributions']
+    sqrt = math.sqrt(df['Contributions'])
+
     
-## contributions = list of individual contributions
-def value(contributions):
-    sum = 0
-    for c in contributions:
-       sum += math.sqrt(c)
     
-    # z = project weighted raw value
-    z = math.pow(sum, 2)
-    print('value: ', z)
-    return z
+    ## not sure about how to implement below cleanly just yet
+    w_value += math.sqrt(c)
+    w_value = 0
+    # w = project weighted raw value
+    w = math.pow(w_value, 2)
+    
 
 
-def share(value, sum_values, matched_pool):
+def share(w_value, sum_values, matched_pool):
     
     weight = value / sum_values
     print('weight: ', weight)
