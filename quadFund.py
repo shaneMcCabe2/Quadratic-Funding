@@ -3,7 +3,8 @@ import pandas as pd
 
 
 '''
-This script will prompt the user to input the matched pool amount, project names, and contributions for each project. It will then calculate the weighted values, matched amounts, and the % change from the initial funding amount. The script will output the data in a dataframe.
+This script will prompt the user to input the matched pool amount, project names, and contributions for each project. It will then calculate the weighted values,
+matched amounts, and the % change from the initial funding amount. The script will output the data in a dataframe.
 
 '''
 
